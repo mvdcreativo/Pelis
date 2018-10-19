@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use Goutte\Client;
 use Illuminate\Support\Collection as Collection;
 use Symfony\Component\DomCrawler\Crawler;
+
+use App\Movie;
+use App\Director;
 
 
 class ScrapingController extends Controller
@@ -84,10 +86,6 @@ class ScrapingController extends Controller
 								return $node->filter('.ab')->first()->text();
 							});
 
-				$director = $crawler->filter('#informacion > p')->eq(9)->each(function($node){
-								return $node->filter('.ab')->first()->text();
-							});
-
 				$reparto = $crawler->filter('#informacion > p')->eq(10)->each(function($node){
 								return $node->filter('.ab > a')->each(function($node_a){
 									return $node_a->text();
@@ -96,86 +94,50 @@ class ScrapingController extends Controller
 
 				$imagen = $crawler->filter('.poster > img')->first()->attr('src');
 
+				///////director
+				$director = $crawler->filter('#informacion > p')->eq(9)->each(function($node){
+								return $node->filter('.ab')->first()->text();
+							});
+
+				if($director){
+					$getDirector = Director::where('name', implode($director))->first();
+					if($getDirector != null){
+						$director_id = $getDirector->id;
+					}else{
+						$dire = Director::create(['name' => implode($director)]);
+						$director_id = response($dire->id)->original;
+					}
+					
+					$datos = [
+						'title' => implode($titulo),
+						'title_origin' => implode($titulo_origen),
+						'description' => $descripcion,
+						'ano' => implode($ano),
+						'genre' => $genero,
+						'duration' => implode($duracion),
+						'director' => $director_id,
+						'actor' => $reparto,
+						'image' => $imagen,
+						'url_origin' => implode($linkOrigen),
+						'state' => '1'
+						
+					];
+				}
+				//////////////				
 
 				//Armamos el array de datos
-				$datos[] = [
-					'title' => implode($titulo),
-					'title_origin' => implode($titulo_origen),
-					'description' => $descripcion,
-					'ano' => implode($ano),
-					'genre' => $genero,
-					'duration' => implode($duracion),
-					'director' => implode($director),
-					'actor' => $reparto,
-					'image' => $imagen,
-					'url_origin' => implode($linkOrigen),
-					
-				];
+
 				
-				
+				if($datos != null){
+					$movies = Movie::create($datos);
+					$i = $i++;
+					return 'Se an agregado '.$i.' peliculas';
+				};
 			};
 		};
-		echo json_encode($datos);	
+		//echo json_encode($datos);	
 
- 	//
-		//$collection_peliculas = Collection::make($url_peliculas);
-		//var_dump($url_peliculas);
-
-		// foreach ($url_peliculas as $url_pelicula ) {
-		// 	$crawler  = $cliente->request('GET', $url_pelicula);
-
-		// 	$dato = [
-		// 	  	'titulo' => $crawler->filter('.post_title')->first()->text(),
-		// 		'descripcion' => $crawler->filter('.movie-info')->first()->text(),
-
-		// 		// 'link' => $crawler->filter('#dlnmt > table > tbody > tr > td > a')->each(function($dl_node){
-		// 		//     		$comienza = "https://openload.co/f/";
-		// 		//     		$dl_link = $dl_node->attr('href');
-		// 		//     		return $dl_link;
-		// 		// 			// if(stristr($dl_link, $comienza) and stristr($dl_link, "Latino") == TRUE) {
-		// 		// 			// 	return $dl_node->attr('href');
-		// 		// 			// 	//echo $dl_linkOL;
-		// 		// 			// };
-
-		// 		//     	})
-		//     ];
-		//     echo "<pre>";
-		//     var_dump($dato);
-		//     echo ""
-//var_dump($link);
-			//echo $titulo."<br>".$descripcion."<br>".$link[1]."<br><br><br>";
-		
-		
-		
-
-// 		foreach ($url_peliculas as $url_pelicula ) {
-		
-// 			$crawler  = $cliente->request('GET', $url_pelicula[0]);
-
-// 	    	$titulo = $crawler->filter('.todino > h1')->first()->text();
-// 	    	$descripcion = $crawler->filter('.sinopsis')->first()->text();
-
-// 	    	$link = $crawler->filter('#dlnmt > table > tbody > tr > td > a')->each(function($dl_node){
-// 	    				$comienza = "https://openload.co/f/";
-// 	    				$dl_link = $dl_node->attr('href');
-
-// 						  if(stristr($dl_link, $comienza) and stristr($dl_link, "Latino") == TRUE) {
-// 						    $dl_linkOL = $dl_link;
-// 						    echo $dl_linkOL;
-// 						  };
-
-// 	    			});
-// //var_dump($link);
-// 			//echo $titulo."<br>".$descripcion."<br>".$link[1]."<br><br><br>";
-// 		}
-
-
-
-
-  //   	$link = $crawler->selectLink('Security Advisories')->link();
-		// $crawler = $client->click($link);
-  //   	dd($crawler->html());
-
-
+		//$movies = Movie::create($datos);
+		//dd($datos);
     }
 }
