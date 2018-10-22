@@ -9,7 +9,7 @@ class Movie extends Model
     //
 
     protected $fillable = [
-    	'title', 'title_origin', 'description', 'ano', 'duration', 'image', 'rating', 'url_origin', 'url_dwl', 'state'
+    	'title', 'title_origin', 'description', 'ano', 'duration', 'image', 'rating', 'url_origin', 'url_dwl', 'state', 'director_id'
     ];
 
     public function director()
