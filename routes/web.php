@@ -14,11 +14,10 @@
 Route::get('/', function () {
     // return view('welcome');
 
-	$movies = App\Movie::With('actors','genres','director')->get();
 
-	return $movies;
 
 
 });
 
-Route::get('/scraping', 'ScrapingController@scrape');
+Route::get('/scraping', 'ScrapingController@tomar_datos');
+Route::get('/status-remote-upload', 'StatusController@getStatus');

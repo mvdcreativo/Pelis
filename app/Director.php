@@ -11,7 +11,7 @@ class Director extends Model
     	'name'
     ];
 
-    public function genres()
+    public function movies()
     {
         return $this->hasMany(Movie::class);
     }

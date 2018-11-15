@@ -24,8 +24,19 @@ class CreateMoviesTable extends Migration
             $table->string('rating')->nullable();
             $table->string('url_origin')->nullable();
             $table->string('url_dwl')->nullable();
+            $table->string('extid')->nullable();
             $table->integer('state');
-
+            $table->string('id_upload')->nullable();
+            $table->string('tmdb_id')->nullable();
+            $table->string('imdb_id')->nullable();
+            $table->string('image_bg')->nullable();
+            $table->string('rating_tmdb')->nullable();
+            $table->string('rating_imdb')->nullable();
+            $table->integer('vote_count_tmdb')->nullable();
+            $table->integer('vote_count_imdb')->nullable();
+            $table->date('release_date')->nullable();
+            $table->string('budget')->nullable();
+            $table->string('revenue')->nullable();
             $table->integer('director_id')->unsigned();
 
             $table->timestamps();
