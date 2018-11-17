@@ -57,6 +57,19 @@ class MovieController extends Controller
     public function update(Request $request, $id)
     {
         //
+        try{
+            $movie = Movie::find($id);
+            $movie->tmdb_id = $request->get('tmdb_id');
+            $movie->save();
+            return $movie;            
+        }catch(Exception $e) {
+            return Response::json(array(
+                'error' => true,
+                'status_code' => 400,
+                'response' => 'Ocurrió error',
+            ));
+        }
+
     }
 
     /**
