@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class DirectorResource extends JsonResource
+class Cast extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,9 +14,6 @@ class DirectorResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-            'id' => $this->id,
-            'name' => $this->name
-        ];
+        return parent::toArray($request);
     }
 }

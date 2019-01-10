@@ -1,0 +1,288 @@
+h1 span{
+    /* font-family: 'Nunito', serif; */
+}
+
+a{
+    border-radius: 5px;
+    background-position: center;
+    background-size: cover;
+    margin-bottom: -50px;
+    z-index: 0;
+    text-decoration: none;
+    color: white!important;
+}
+a:hover{
+    filter: grayscale(100%);
+}
+
+.em-card-item {
+    border-radius: 5px;
+    width: 100%;
+    max-width: 300px;
+    min-height: 450px;
+    -webkit-box-shadow: 4px 3px 12px -4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 4px 3px 12px -4px rgba(0,0,0,0.75);
+    box-shadow: 4px 3px 12px -4px rgba(0,0,0,0.75);
+    background-position: center;
+    background-size: cover;
+    display: grid;
+    grid-template-rows: 10fr 1fr;
+    grid-template-areas: 
+            'header'
+            'action';
+    
+
+}
+
+/* .em-card-item:hover{
+    box-shadow: 5px 5px 10px #888888;
+} */
+.em-card-valoration span{
+    display: flex;
+    align-items: center;
+}
+.em-card-header{
+    padding: 1rem;
+    color: #fff;
+    border-radius: 5px 5px 0px 0px;
+    max-height: 100px;
+    background: -moz-linear-gradient(top, rgba(2,2,2,1) 0%, rgba(227,227,227,0) 89%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(2,2,2,1) 0%,rgba(227,227,227,0) 89%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(2,2,2,1) 0%,rgba(227,227,227,0) 89%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#020202', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+    grid-area: header;
+    display: grid;
+    align-items: flex-start;
+    grid-template-rows: 1fr 3fr;
+
+}
+.em-card-subtitle{
+    font-size: 0.7em;
+}
+
+.em-card-action{
+    border-radius: 0px 0px 5px 5px;
+    /* background-color: rgb(182, 182, 182); */
+    display: grid;
+    grid-area: action;    
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    /* margin-top: -10px; */
+    z-index: 100;
+}
+
+.em-card-action a{
+    border-radius: 50px;
+    font-size: 0.7em;
+    border: 0;
+    text-decoration: none;
+    background: rgb(8, 189, 159);
+    color: #fff;
+    padding: 0.1rem 0.6rem;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+
+
+}
+
+.em-card-action .de{
+    background: hsl(204, 100%, 34%)
+}
+
+.em-card-action a i{
+    color: white;
+
+}
+.em-card-action a span{
+    padding: 0.3rem
+}
+
+
+.listado a{
+    text-decoration: none;
+}
+
+
+.listado{
+    grid-area: main;
+    margin-top: 0;
+    width: 100%;
+    display: grid;
+    justify-items: center;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 1rem;
+    padding: 0.5rem;
+}
+
+/* 
+ /* */ 
+.search{
+    grid-area: search;
+    background-color: #272727;
+    width: 100%;
+    margin-top: 4rem;
+    display: grid;
+    justify-items : center;
+    padding-bottom: 0.5rem;
+    max-height: 2.5rem;
+}
+.input-txt input{
+    display: block;
+    width: 50%;
+}
+
+
+/*  */
+
+h1 span{
+    font-family: 'Roboto-Light', serif;
+}
+h1{
+    font-family: 'Roboto-Bold', serif;
+    font-size: 1.5em;
+    padding: 1rem
+}
+a{
+    border-radius: 5px;
+    background-position: center;
+    background-size: cover;
+    margin-bottom: -50px;
+    z-index: 0;
+    text-decoration: none;
+}
+a:hover{
+    filter: grayscale(100%);
+}
+
+.em-card-item {
+    border-radius: 5px;
+    width: 100%;
+    max-width: 300px;
+    min-height: 450px;
+    -webkit-box-shadow: 4px 3px 12px -4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 4px 3px 12px -4px rgba(0,0,0,0.75);
+    box-shadow: 4px 3px 12px -4px rgba(0,0,0,0.75);
+    background-position: center;
+    background-size: cover;
+    display: grid;
+    grid-template-rows: 10fr 1fr;
+    grid-template-areas: 
+            'header'
+            'action';
+    
+
+}
+
+.em-card-valoration span{
+    display: flex;
+    align-items: center;
+}
+.em-card-header{
+    padding: 1rem;
+    color: #fff;
+    border-radius: 5px 5px 0px 0px;
+    max-height: 100px;
+    background: -moz-linear-gradient(top, rgba(2,2,2,1) 0%, rgba(227,227,227,0) 89%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(2,2,2,1) 0%,rgba(227,227,227,0) 89%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(2,2,2,1) 0%,rgba(227,227,227,0) 89%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#020202', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+    grid-area: header;
+    display: grid;
+    align-items: flex-start;
+    grid-template-rows: 1fr 3fr;
+
+}
+.em-card-subtitle{
+    font-size: 0.7em;
+}
+
+.em-card-action{
+    border-radius: 0px 0px 5px 5px;
+    /* background-color: rgb(182, 182, 182); */
+    display: grid;
+    grid-area: action;    
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    /* margin-top: -10px; */
+    z-index: 100;
+}
+
+.em-card-action a{
+    border-radius: 50px;
+    font-size: 0.7em;
+    border: 0;
+    text-decoration: none;
+    background: rgb(8, 189, 159);
+    color: #fff;
+    padding: 0.1rem 0.6rem;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+
+
+}
+
+.em-card-action .de{
+    background: hsl(204, 100%, 34%)
+}
+
+.em-card-action a i{
+    color: white;
+
+}
+.em-card-action a span{
+    padding: 0.3rem
+}
+
+
+@media(min-width: 1400px){
+    .listado{
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+}
+
+@media(min-width: 1600px){
+    .listado{
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    }
+}
+
+@media(max-width: 1100px){
+    .listado{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media(max-width: 960px){
+    .listado{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media(max-width: 768px){
+    .listado{
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+@media(max-width: 480px){
+      .listado{
+          grid-template-columns: 1fr;
+          padding: 0;
+      }
+      .em-card-item {
+        max-width: 100%;
+        min-height: 600px;
+      }
+
+
+
+}
+
+
+
+

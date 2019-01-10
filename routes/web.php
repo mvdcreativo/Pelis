@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    // return view('welcome');
+     return view('welcome');
 
 
 
@@ -21,3 +21,11 @@ Route::get('/', function () {
 
 Route::get('/scraping', 'ScrapingController@tomar_datos');
 Route::get('/status-remote-upload', 'StatusController@getStatus');
+Route::get('/serch-id-tmdb', 'ExternalIdController@cotejarIds');
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('peliculas', 'MovieController');

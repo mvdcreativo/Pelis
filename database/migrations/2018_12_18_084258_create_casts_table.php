@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateActorMovieTable extends Migration
+class CreateCastsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,22 @@ class CreateActorMovieTable extends Migration
      */
     public function up()
     {
-        Schema::create('actor_movie', function (Blueprint $table) {
+        Schema::create('casts', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('actor_id')->unsigned();
+            $table->integer('cast_tmdb_id')->nullable();
+            $table->string('character')->nullable();
+            $table->string('name')->nullable();
+            $table->string('order')->nullable();
+            $table->string('profile_path')->nullable();
+
             $table->integer('movie_id')->unsigned();
 
             $table->timestamps();
 
-            ///Relaciones
-
-            $table->foreign('actor_id')->references('id')->on('actors')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
+            //RELACIONES
             $table->foreign('movie_id')->references('id')->on('movies')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
         });
     }
 
@@ -38,6 +39,6 @@ class CreateActorMovieTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('actor_movie');
+        Schema::dropIfExists('casts');
     }
 }

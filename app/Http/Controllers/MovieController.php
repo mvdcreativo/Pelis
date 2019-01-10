@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\API;
-use App\Movie;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Movie;
+
 use App\Http\Resources\Movie as MovieResource;
 use App\Http\Resources\MovieResourceSimple;
-
-
 
 class MovieController extends Controller
 {
@@ -19,20 +17,27 @@ class MovieController extends Controller
      */
     public function index(Request $request)
     {
-        //
         $e =  $request->input('e');
 
         if($e == true){
             $data = Movie::Where('state',5)->orWhere('state', 2)->get();
             return $data = compact('data');
         }else{
-            return MovieResourceSimple::collection(Movie::all()->where('state', 2,1));
+            $movies =  MovieResourceSimple::collection(Movie::orWhere('state',  1,2)->orderBy('release_date', 'desc')->paginate(25));
+            return view('movies.peliculas', compact('movies'));
             //return MovieResourceSimple::collection(Movie::where('state', 2)->orderBy('release_date', 'desc')->paginate(50) );
 
         }
-        //$movies = MovieResource::With('actors','genres','director')->get();
+    }
 
-        //return $movies;
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
     }
 
     /**
@@ -55,11 +60,17 @@ class MovieController extends Controller
     public function show($id)
     {
         //
-        
-        return new MovieResource(Movie::find($id));
-        // $data =  Movie::where('tmdb_id', $idTmdb)->get();
+    }
 
-        // return $data = compact('data');
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
     }
 
     /**
@@ -72,22 +83,6 @@ class MovieController extends Controller
     public function update(Request $request, $id)
     {
         //
-        try{
-            $movie = Movie::find($id);
-            $movie->tmdb_id = $request->input('tmdb_id');
-            $movie->release_date = $request->input('release_date');
-
-            $movie->state = 1;
-            $movie->save();
-            return $movie;            
-        }catch(Exception $e) {
-            return Response::json(array(
-                'error' => true,
-                'status_code' => 400,
-                'response' => 'Ocurrió error',
-            ));
-        }
-
     }
 
     /**

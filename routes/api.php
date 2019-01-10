@@ -17,3 +17,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('movies', 'API\MovieController');
+
+Route::apiResource('genres', 'API\GenreController');
+

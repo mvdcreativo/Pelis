@@ -1,14 +1,110 @@
 
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+// // Fonts
+// @import url('https://fonts.googleapis.com/css?family=Nunito');
+// @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+// // Variables
+// @import 'variables';
 
-// Variables
-@import 'variables';
+// // Bootstrap
+// @import '~bootstrap/scss/bootstrap';
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+// .navbar-laravel {
+//   background-color: #fff;
+//   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+// }
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}
+// @import 'movies/movies-list';
+// /////////////////////////
+
+
+// /*  */
+// * {
+//   box-sizing: border-box;
+// }
+
+// @font-face{
+//   font-family: 'Roboto-Regular';
+//   src: url('../fonts/Roboto-Regular.ttf'); 
+// }
+// @font-face{
+//   font-family: 'Roboto-Medium';
+//   src: url('../fonts/Roboto-Medium.ttf'); 
+// }
+// @font-face{
+//   font-family: 'Roboto-Light';
+//   src: url('../fonts/Roboto-Light.ttf'); 
+// }
+// @font-face{
+//   font-family: 'Roboto-Bold';
+//   src: url('../fonts/Roboto-Bold.ttf'); 
+// }
+
+// body{
+//   padding: 0;
+//   margin: 0;
+// }
+// .listado{
+//   /* background: rgb(219, 218, 218); */
+//   margin-top: 50px;
+//   width: 100%;
+//   box-sizing: border-box;
+//   padding-top: 0.9rem ;
+//   font-family: 'Roboto-Light',serif;
+//   min-height: 100vh;
+//   display: grid;
+//   grid-gap: 1rem;
+// }
+
+// /* colores */
+// .green{
+//   color: green;
+// }
+// .blue{
+//   color: rgb(0, 76, 255)
+// }
+// .yellow{
+//   color: yellow;
+// }
+
+// h1{
+//   font-size: 1em;
+//   font-weight: inherit;
+//   font-family: 'Roboto-Regular', serif;
+//   margin: 0;
+//   padding: 0;
+// }
+
+// .input-txt input{
+//   background-color: #f3f3f3;
+//   outline: none;
+//   border: none;
+//   padding: 0.6em 1em;
+//   border-radius: 1.5em;
+// }
+
+// .progress {
+//   top:0;
+//   position: absolute!important;
+//   border-radius: 5px 5px 0px 0px;
+//   z-index: 1000;
+// }
+
+// .mat-menu-panel{
+//   width: 100%!important;
+//   max-width: 100%!important;
+//   /* overflow: hidden!important; */
+//   min-width: 300px!important;
+//   height: 35vh!important;
+//   min-height: 260px;
+//   display: grid;
+
+
+// }
+// .mat-menu-panel .mat-menu-content{
+//     display: grid;
+//     width: 100%;
+//     grid-template-columns: 1fr 1fr 1fr 1fr!important;
+// }
+
+// ///////////////////////////
+

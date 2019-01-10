@@ -9,43 +9,49 @@ class Movie extends Model
     //
 
     protected $fillable = [
-        'title', 
-        'title_origin', 
-        'description', 
-        'ano', 
-        'duration', 
-        'image', 
-        'rating', 
-        'url_origin', 
-        'url_dwl', 
-        'extid', 
-        'state', 
-        'director_id', 
-        'id_upload', 
+        'id',
         'tmdb_id',
-        'imdb_id', 
-        'image_bg',
-        'rating_tmdb',
-        'rating_imdb',
-        'vote_count_tmdb',
-        'vote_count_imdb',
-        'release_date',
+        'title',
+        'slug',
+        'backdrop_path',
         'budget',
-        'revenue'
+        'imdb_id',
+        'original_language',
+        'original_title',
+        'overview',
+        'popularity',
+        'poster_path',
+        'release_date',
+        'revenue',
+        'runtime',
+        'state',
+        'tagline',
+        'vote_average',
+        'vote_count',
+        'image',
+        'url_dwl',
+        'url_origin',
+        'extid',
+        'id_upload',
     ];
 
-    public function director()
-    {
-        return $this->belongsTo(Director::class);
-    }
+    // public function director()
+    // {
+    //     return $this->belongsTo(Director::class);
+    // }
 
     public function genres()
     {
         return $this->belongsToMany(Genre::class);
     }
 
-    public function actors()
+    public function crews()
     {
-        return $this->belongsToMany(Actor::class);
+        return $this->hasMany(Crew::class);
+    }
+
+    public function casts()
+    {
+        return $this->hasMany(Cast::class);
     }
 }

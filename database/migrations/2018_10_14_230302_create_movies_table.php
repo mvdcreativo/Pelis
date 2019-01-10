@@ -15,37 +15,37 @@ class CreateMoviesTable extends Migration
     {
         Schema::create('movies', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('tmdb_id')->nullable();
             $table->string('title');
-            $table->string('title_origin')->nullable();
-            $table->mediumText('description');
-            $table->integer('ano');
-            $table->string('duration')->nullable();
-            $table->string('image');
-            $table->string('rating')->nullable();
-            $table->string('url_origin')->nullable();
-            $table->string('url_dwl')->nullable();
-            $table->string('extid')->nullable();
-            $table->integer('state');
-            $table->string('id_upload')->nullable();
-            $table->string('tmdb_id')->nullable();
+            $table->string('slug', 128)->nullable();
+            $table->string('backdrop_path')->nullable();
+            $table->integer('budget')->nullable();
             $table->string('imdb_id')->nullable();
-            $table->string('image_bg')->nullable();
-            $table->string('rating_tmdb')->nullable();
-            $table->string('rating_imdb')->nullable();
-            $table->integer('vote_count_tmdb')->nullable();
-            $table->integer('vote_count_imdb')->nullable();
+            $table->string('original_language')->nullable();
+            $table->string('original_title')->nullable();
+            $table->text('overview')->nullable();
+            $table->float('popularity')->nullable();
+            $table->string('poster_path')->nullable();
             $table->date('release_date')->nullable();
-            $table->string('budget')->nullable();
-            $table->string('revenue')->nullable();
-            $table->integer('director_id')->unsigned();
+            $table->integer('revenue')->nullable();
+            $table->integer('runtime')->nullable();
+            $table->integer('state')->nullable();
+            $table->string('tagline')->nullable();
+            $table->float('vote_average')->nullable();
+            $table->integer('vote_count')->nullable();
+            $table->string('image')->nullable();
+            $table->string('url_dwl')->nullable();
+            $table->string('url_origin')->nullable();
+            $table->string('extid')->nullable();
+            $table->string('id_upload')->nullable();
 
             $table->timestamps();
 
             //RELACIONES
 
-            $table->foreign('director_id')->references('id')->on('directors')
-                ->inDelete('cascade')
-                ->onUpdate('cascade');
+            // $table->foreign('director_id')->references('id')->on('directors')
+            //     ->inDelete('cascade')
+            //     ->onUpdate('cascade');
 
 
         });

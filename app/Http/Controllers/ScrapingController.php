@@ -57,6 +57,9 @@ class ScrapingController extends Controller
 
 
 			};
+			if($response->getStatusCode() == 501){
+				echo 'error En el Servidor de Openload';
+			};
 
 
 		}
@@ -129,64 +132,64 @@ class ScrapingController extends Controller
 							echo $upload_id['result']->id.'<br>';
 							$upload_id = $upload_id['result']->id;
 							////DESCRIPCION / SINOPSIS
-							$if_p = $crawler->filter('.mvic-desc > .desc ')->first()->html();
-							$pos = strpos($if_p, "<p>");
-							if($pos !== false){
-								$descripcion = $crawler->filter('.mvic-desc > .desc > p')->first()->text();	
-							}else{
-								$descripcion = "Sin Descripción";
-							};
+							// $if_p = $crawler->filter('.mvic-desc > .desc ')->first()->html();
+							// $pos = strpos($if_p, "<p>");
+							// if($pos !== false){
+							// 	$descripcion = $crawler->filter('.mvic-desc > .desc > p')->first()->text();	
+							// }else{
+							// 	$descripcion = "Sin Descripción";
+							// };
 							
 			
 							////AÑO
-							$ano = $crawler->filter('.mvic-info > .mvici-right > p')->eq(2)->each(function($node){
-								return $node->filter('a')->first()->text();
-							});
-							if($ano != null){
-								$ano = implode($ano);
-							}else{
-								$ano = 0;
-							}
+							// $ano = $crawler->filter('.mvic-info > .mvici-right > p')->eq(2)->each(function($node){
+							// 	return $node->filter('a')->first()->text();
+							// });
+							// if($ano != null){
+							// 	$ano = implode($ano);
+							// }else{
+							// 	$ano = 0;
+							// }
 							
 			
 							////DURACION
-							$duracion = $crawler->filter('.mvic-info > .mvici-right > p')->eq(0)->each(function($node){
-								return $node->filter( 'span')->first()->text();
-							});
-							$duracion = implode($duracion);
+							// $duracion = $crawler->filter('.mvic-info > .mvici-right > p')->eq(0)->each(function($node){
+							// 	return $node->filter( 'span')->first()->text();
+							// });
+							// $duracion = implode($duracion);
 			
 							/////REPARTO
-							$reparto = $crawler->filter('.mvic-info > .mvici-left > p')->eq(3)->each(function($node){
-											return $node->filter('span > a')->each(function($node_a){
+							// $reparto = $crawler->filter('.mvic-info > .mvici-left > p')->eq(3)->each(function($node){
+							// 				return $node->filter('span > a')->each(function($node_a){
 			
-												$actor = Actor::firstOrCreate(['name' => $node_a->text()]);
-												return $actor->id;
-											});
-										});
+							// 					$actor = Actor::firstOrCreate(['name' => $node_a->text()]);
+							// 					return $actor->id;
+							// 				});
+							// 			});
 							/////////////
 							/////Genre
-							$generos = $crawler->filter('.mvic-info > .mvici-left > p')->eq(1)->each(function($node){
-											return $node->filter('a')->each(function($node_a){
-												$genre = Genre::firstOrCreate(['name' => $node_a->text()]);
-												return $genre->id;
-											});
-										});
+							// $generos = $crawler->filter('.mvic-info > .mvici-left > p')->eq(1)->each(function($node){
+							// 				return $node->filter('a')->each(function($node_a){
+							// 					$genre = Genre::firstOrCreate(['name' => $node_a->text()]);
+							// 					return $genre->id;
+							// 				});
+							// 			});
 							////////////
 							$imagen = $crawler->filter('.mvic-thumb > img')->first()->attr('src');
 			
 							///////DIRECTOR
-							$director = $crawler->filter('.mvic-info > .mvici-left > p')->eq(2)->each(function($node){
-											return $node->filter('span > a')->first()->each(function($node_a){
-												$dire = Director::firstOrCreate(['name' =>  $node_a->text()]);
-												return $dire->id;
-											});
-										});
-							if($director != null)
-							{
-								$director_id = implode($director[0]);
-							}else{
-								$director_id = 0;
-							}
+							// $director = $crawler->filter('.mvic-info > .mvici-left > p')->eq(2)->each(function($node){
+							// 				return $node->filter('span > a')->first()->each(function($node_a){
+							// 					$dire = Director::firstOrCreate(['name' =>  $node_a->text()]);
+							// 					return $dire->id;
+							// 				});
+							// 			});
+							// if($director != null)
+							// {
+							// 	$director_id = implode($director[0]);
+							// }else{
+							// 	$director_id = 0;
+							// }
 							//////////////	
 
 							// ////////RATING
@@ -198,14 +201,14 @@ class ScrapingController extends Controller
 							$datos = [
 								'title' => $titulo,
 								//'title_origin' => implode($titulo_origen),
-								'description' => $descripcion,
-								'ano' => $ano,
-								'duration' => $duracion,
+								// 'description' => $descripcion,
+								// 'ano' => $ano,
+								// 'duration' => $duracion,
 								'image' => $imagen,
 								//'rating' => $rating,
 								'url_origin' => $urlOrigin,
 								'state' => 0,
-								'director_id' => $director_id,
+								// 'director_id' => $director_id,
 								'id_upload' => $upload_id,
 								
 							];
@@ -213,10 +216,10 @@ class ScrapingController extends Controller
 							// var_dump($datos);
 							//////GUARDAMOS EN LA BD
 							$movies = Movie::firstOrCreate(['title' => $datos['title']], $datos );
-							$movies->genres()->sync($generos[0]);
-							if(isset($reparto[0])){
-								$movies->actors()->sync($reparto[0]);
-							}
+							// $movies->genres()->sync($generos[0]);
+							// if(isset($reparto[0])){
+							// 	$movies->actors()->sync($reparto[0]);
+							// }
 						}else{
 							
 							if($upload_id['code'] == 403){
@@ -252,9 +255,9 @@ class ScrapingController extends Controller
 				});
 
 		//$n_paginas = basename(implode($paginas));
-		$n_paginas = 20;
+		$n_paginas =115;
 
-		for ($i=0; $i <= $n_paginas; $i++) {
+		for ($i=110; $i <= $n_paginas; $i++) {
 			if($i==0){
 				$url_objetivo = "http://fanpelis.com/movies/";
 			}else{
