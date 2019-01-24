@@ -1,0 +1,331 @@
+.contenedor-detail{
+    grid-area: main;
+    box-sizing: border-box;
+    font-family: 'Roboto-Light',serif;
+    margin-top: 0;
+    width: 100%;
+    display: grid;
+    justify-items: center;
+    grid-gap: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: gray;
+}
+.info{
+    width: 100%;
+    padding: 1rem;
+    display: grid;
+    grid-gap: 1rem;
+    /* grid-template-columns: 1fr; */
+    justify-items: center;
+    font-size: 1em;
+    background: white;
+}
+.info .atributo{
+    font-size: 1em;
+    font-weight: bold
+}
+.datos{
+    padding: 1rem;
+    /* margin-top: -20vh; */
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:
+                    " sinopsis sinopsis sinopsis"
+                    "genero genero lanzamiento"
+                    " director director duracion"
+                    "actores actores actores"
+}
+.datos span img{
+    padding: 1rem;
+}
+.rating{
+    width: 100%;
+    grid-area: rating;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    grid-template-columns: 1fr;
+    grid-template-rows: 2fr 1fr
+}
+.rating span{
+    width: 100%;
+    text-align: center;
+}
+.rating .count-votos{
+    margin-top: -1rem;
+    font-size: 0.7em;
+    text-align: center;
+}
+.titulo{
+    display: grid;
+    align-items: center;
+    grid-area: title;
+}
+.titulo span{
+    opacity:0.8 ;
+}
+
+.acciones{
+    background-size: cover;
+    background-position: center;    
+    min-height: 80vh;
+}
+
+.acciones .bg{
+    width: 100%;
+    padding: 1rem;
+    background: -moz-linear-gradient(top, rgba(2,2,2,1) 0%, rgba(227,227,227,0) 89%, rgba(255,255,255,0) 100%); 
+    background: -webkit-linear-gradient(top, rgba(2,2,2,1) 0%,rgba(227,227,227,0) 89%,rgba(255,255,255,0) 100%); 
+    background: linear-gradient(to bottom, rgba(2,2,2,1) 0%,rgba(227,227,227,0) 89%,rgba(255,255,255,0) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#020202', endColorstr='#00ffffff',GradientType=0 );
+    background-size: cover;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-gap: 1rem;
+
+}
+.ver-online{
+    width: 100%;
+    display: grid;
+    grid-template-areas: 
+                "headerVideo"
+                "video";
+    justify-items: center;
+
+
+}
+.ver-online .header{
+    grid-area: headerVideo;
+    color: white;
+    width: 100%;
+    height: 55px;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-areas: 
+        "rating title";
+    grid-template-columns: 1fr 3fr;
+}
+.ver-online .video{
+    margin:2rem;
+    grid-area: video;  
+    border-radius: 5px;
+    width: 100%;
+    height: 394px;
+    max-width: 699px;
+    -webkit-box-shadow: 8px 8px 12px -4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 8px 8px 12px -4px rgba(0,0,0,0.75);
+    box-shadow: 8px 8px 12px -4px rgba(0,0,0,0.75);
+    display: grid;
+    position: relative;
+}
+.ver-online .play, .iframe{
+    background-size: cover;
+    background-position: center;
+    max-width: 699px;
+    width: 100%;  
+    height: 100%; 
+    max-height: 394px;
+    border-radius: 5px;   
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    text-align: center;
+
+}
+.ver-online .play .material-icons {
+    font-size: 6em;
+    color: rgba(255, 255, 255, 0.76);
+    cursor: pointer;
+}
+.ver-online .play .material-icons:hover {
+    color: rgba(0, 255, 255, 0.472);
+}
+
+.ver-online .iframe{
+    max-height: 394px;
+}
+
+.img, .img img{
+    width: 100%;
+    border-radius: 5px;
+}
+.img img{
+    -webkit-box-shadow: 8px 8px 12px -4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 8px 8px 12px -4px rgba(0,0,0,0.75);
+    box-shadow: 8px 8px 12px -4px rgba(0,0,0,0.75);
+}
+h1{
+    font-family: 'Roboto-Regular',serif;
+    font-size: 2em;
+}
+.actores{
+    display: grid;
+    grid-area: actores;
+    width: 100%;
+    border-radius: 10px;
+    padding: 0.5rem;
+    background: #ecf0f1;
+    align-content: center;
+    grid-gap: 1rem;
+    padding: 1rem;
+    /* justify-content: space-between; */
+    
+    
+}
+
+.actores-cimg{
+    width: 100%;
+    max-width: 1024px;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(7, 1fr);
+}
+.actores-elenco{
+    background-color: white;
+    width: 100%;
+    max-width: 1024px;
+    display: grid;
+    grid-gap: 1rem;
+    padding: 1rem;
+    grid-template-columns: repeat(7, 1fr);
+}
+.actores-elenco .dt-card-item {
+
+    max-width: 90px;
+    
+
+}
+
+.dt-card-item {
+    width: 100%;
+    border-radius: 5px;
+    max-width: 138px;
+    background: rgb(255, 255, 255);
+    /* padding: 0.1rem; */
+    height: 100%;
+
+    background-position: center;
+    background-size: cover;
+    display: grid;
+}
+
+.dt-card-item .dt-card-image{
+    z-index: 0;
+    margin-top: 0;
+    display: grid;
+    justify-content: center;
+    align-items: flex-start
+    
+}
+.dt-card-item .dt-card-image img {
+    width: 100%;
+    border-radius: 5% 5% 5% 5%;
+   
+
+}
+.dt-card-title{
+    display: grid;
+    text-align: left;
+    padding: 0.5rem;
+    color: black;
+    /* justify-content: center ; */
+    /* align-content: flex-start; */
+    /* align-items: center ; */
+    font-size: 0.8em;
+    /* grid-template-rows:  1fr 1fr;    */
+}
+
+.icon-cast{
+    font-size: 48px!important;
+    width: 48px!important;
+    height: 48px!important;
+    padding: 0!important;
+    text-align: left!important;
+    margin: 0!important;
+}
+
+
+.director, .ano, .sinopsis, .duracion, .genero{
+    width: 100%;
+    border-radius: 50px;
+    display: grid;
+    /* padding: 0.5rem; */
+    height: 2.5em;
+    background: rgb(236, 240, 241);
+    display: grid;
+    align-items: center;
+    align-content: center;
+    grid-template-columns: 0.9fr 2fr 10fr;
+    /* color: white */
+}
+.ano{
+    grid-area: lanzamiento
+}
+.director{
+    grid-area: director
+}
+.sinopsis{
+    grid-area: sinopsis;
+    text-align: justify;
+    /* padding: 30px; */
+    border-radius: 10px;
+    height: auto;
+}
+.sinopsis span:last-child{
+    padding: 1rem;
+}
+.duracion{
+    grid-area: duracion
+}
+.genero{
+    grid-area: genero
+}
+
+
+@media(min-width: 1400px){
+
+}
+
+@media(min-width: 1600px){
+
+}
+
+@media(max-width: 1100px){
+    .actores-cimg{
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+@media(max-width: 960px){
+    .actores-cimg{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media(max-width: 768px){
+    .actores-cimg{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media(max-width: 480px){
+    
+    .actores-cimg{
+        width: 100%;
+        max-width: 800px;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .info{
+        width: 100%;
+        display: grid;
+        grid-gap: 1rem;
+        
+        grid-template-columns: 1fr;
+    }
+}

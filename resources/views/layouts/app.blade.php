@@ -2,12 +2,15 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
+    <link rel="icon" href="{{ asset('favicon.png') }}" />
+    <title>{{ $meta_title }} | Ver Online Latino }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="{{ $meta_claves }}">
+    <meta name="description" content="{{ $meta_description }}" />
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    
 
     <!-- Scripts -->
     <script src="{{ asset('js/bootstrap/jquery.js') }}" defer></script>
@@ -20,13 +23,24 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-133162795-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-133162795-1');
+</script>
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    <img src="{{ asset('images/logo-h56.png') }}" alt="Ver Latino Online">
+                    {{-- {{ config('app.name', 'Laravel') }} --}}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -36,12 +50,36 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
 
+                        
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        @foreach ($genres as $genre)
+                            @if ($genre->id == 2 || $genre->id == 1 || $genre->id == 7 || $genre->id == 12 || $genre->id == 4 || $genre->id == 14)
+                                
+                                
+                                <li>
+                                    <a class="" href="/peliculas-de/{{ $genre->slug }}" >{{ $genre->name }}</a>
+                                </li>
+                            @endif
+                         @endforeach
+                            <div class="dropleft">
+                                <a class="dropdown-toggle" href="#" role="button" id="genres" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  Todos
+                                </a>
+                              
+                                <div class="dropdown-menu" aria-labelledby="genres">
+                                        <div class="desplegable-genres">
+                                            @foreach ($genres as $genre)
+                                                <a class="dropdown-item" href="/peliculas-de/{{ $genre->slug }}">{{ $genre->name }}</a>
+                                            @endforeach 
+                                        </div>
+                                </div>
+                            </div>
+
                         <!-- Authentication Links -->
-                        @guest
+                        {{-- @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
@@ -68,13 +106,13 @@
                                     </form>
                                 </div>
                             </li>
-                        @endguest
+                        @endguest --}}
                     </ul>
                 </div>
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="">
             @yield('content')
         </main>
     </div>

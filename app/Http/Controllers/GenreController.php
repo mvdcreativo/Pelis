@@ -3,32 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Movie;
 use App\Genre;
+use App\Http\Resources\GenreResource;
+use View;
 
-use App\Http\Resources\Movie as MovieResource;
-use App\Http\Resources\MovieResourceSimple;
-
-class MovieController extends Controller
+class GenreController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $e =  $request->input('e');
-
-        if($e == true){
-            $data = Movie::Where('state',5)->orWhere('state', 2)->get();
-            return $data = compact('data');
-        }else{
-            $movies =  MovieResourceSimple::collection(Movie::where('state','=', 1)->orWhere('state','=', 2)->orderBy('release_date', 'desc')->paginate(50));
-            return view('movies.peliculas', compact('movies'));
-            //return MovieResourceSimple::collection(Movie::where('state', 2)->orderBy('release_date', 'desc')->paginate(50) );
-
-        }
+        $genres = Genre::all();
+        
+        // return view('layouts.app', compact('genres'));
     }
 
     /**
@@ -55,19 +45,15 @@ class MovieController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  string  $slug
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($slug)
     {
-        $movie = new MovieResource(Movie::where('slug', '=', $slug)->firstOrFail());
-        // $crews = $movie;
-        $director = $movie->crews->where('job','Director');
-        
-        //  return $movie ;
-             
-         return view('movies.detalle-pelicula', compact('movie','director'));
-
+        $genre = new GenreResource(Genre::where('slug','=',$slug)->firstOrFail());
+        $movies = $genre->movies()->orderBy('release_date', 'desc')->paginate(50);
+        // return $movies;
+        return view('movies.peliculas', compact('movies','genre'));
     }
 
     /**
@@ -103,6 +89,4 @@ class MovieController extends Controller
     {
         //
     }
-
-
 }

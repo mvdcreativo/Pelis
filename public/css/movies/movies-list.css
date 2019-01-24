@@ -1,8 +1,29 @@
-h1 span{
-    /* font-family: 'Nunito', serif; */
+.em-card-item h1 span{
+     font-family: 'Roboto-light', serif;
+}
+.contenedor h1{
+    font-size: 1em!important;
+    font-weight: inherit;
+    font-family: 'Roboto-Regular', serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  .contenedor{
+    grid-area: main;
+    box-sizing: border-box;
+    font-family: 'Roboto-Light',serif;
+    min-height: 100vh;
+    margin-top: 0;
+    width: 100%;
+    display: grid;
+    justify-items: center;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 1rem;
+    padding: 0.5rem;
 }
 
-a{
+.em-card-item a{
     border-radius: 5px;
     background-position: center;
     background-size: cover;
@@ -11,7 +32,7 @@ a{
     text-decoration: none;
     color: white!important;
 }
-a:hover{
+.em-card-item a:hover{
     filter: grayscale(100%);
 }
 
@@ -95,26 +116,10 @@ a:hover{
     color: white;
 
 }
-.em-card-action a span{
-    padding: 0.3rem
-}
 
 
-.listado a{
-    text-decoration: none;
-}
 
 
-.listado{
-    grid-area: main;
-    margin-top: 0;
-    width: 100%;
-    display: grid;
-    justify-items: center;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 1rem;
-    padding: 0.5rem;
-}
 
 /* 
  /* */ 
@@ -136,25 +141,7 @@ a:hover{
 
 /*  */
 
-h1 span{
-    font-family: 'Roboto-Light', serif;
-}
-h1{
-    font-family: 'Roboto-Bold', serif;
-    font-size: 1.5em;
-    padding: 1rem
-}
-a{
-    border-radius: 5px;
-    background-position: center;
-    background-size: cover;
-    margin-bottom: -50px;
-    z-index: 0;
-    text-decoration: none;
-}
-a:hover{
-    filter: grayscale(100%);
-}
+
 
 .em-card-item {
     border-radius: 5px;
@@ -237,40 +224,48 @@ a:hover{
     padding: 0.3rem
 }
 
+.pagination{
+    
+    padding: 1rem!important;
+    display: grid;
+    grid-gap: 1rem;
+    justify-content: center;
+}
+
 
 @media(min-width: 1400px){
-    .listado{
+    .contenedor{
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     }
 }
 
 @media(min-width: 1600px){
-    .listado{
+    .contenedor{
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     }
 }
 
 @media(max-width: 1100px){
-    .listado{
+    .contenedor{
         grid-template-columns: 1fr 1fr 1fr;
     }
 }
 
 @media(max-width: 960px){
-    .listado{
+    .contenedor{
         grid-template-columns: 1fr 1fr 1fr;
     }
 }
 
 @media(max-width: 768px){
-    .listado{
+    .contenedor{
         grid-template-columns: 1fr 1fr;
     }
 
 }
 
 @media(max-width: 480px){
-      .listado{
+      .contenedor{
           grid-template-columns: 1fr;
           padding: 0;
       }

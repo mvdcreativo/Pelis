@@ -255,9 +255,9 @@ class ScrapingController extends Controller
 				});
 
 		//$n_paginas = basename(implode($paginas));
-		$n_paginas =115;
+		$n_paginas =10;
 
-		for ($i=110; $i <= $n_paginas; $i++) {
+		for ($i=0; $i <= $n_paginas; $i++) {
 			if($i==0){
 				$url_objetivo = "http://fanpelis.com/movies/";
 			}else{

@@ -11,13 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-     return view('welcome');
+// Route::get('/', function () {
+//      return view('movies.peliculas');
 
 
 
 
-});
+// });
 
 Route::get('/scraping', 'ScrapingController@tomar_datos');
 Route::get('/status-remote-upload', 'StatusController@getStatus');
@@ -28,4 +28,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::resource('/', 'MovieController');
+
 Route::resource('peliculas', 'MovieController');
+
+Route::resource('peliculas-de', 'GenreController');
+

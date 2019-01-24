@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Movie;
-use App\Http\Resources\Movie as MovieResource;
+use App\Http\Resources\MovieResourceSimple;
 
 
 class GenreResource extends JsonResource
@@ -23,8 +23,8 @@ class GenreResource extends JsonResource
             'genre_tmdb_id' => $this->genre_tmdb_id,
             'name'=> $this->name,
             'slug'=> $this->slug,
-            // 'movies' => MovieResource::collection($this->movies),
-            'movies' => $this->movies,    
+            'movies' => MovieResourceSimple::collection($this->movies),
+            // 'movies' => $this->movies->paginate(2),    
         ];
     }
 }

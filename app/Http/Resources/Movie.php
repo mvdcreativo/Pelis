@@ -49,10 +49,10 @@ class Movie extends JsonResource
             'extid' =>$this->extid,
             'id_upload' =>$this->id_upload,
             'genres' => $this->genres,
-            'credits' => [
-                'casts' => CastResource::collection($this->casts),
-                'crew' => CrewResource::collection($this->crews),
-            ],
+            'casts' => $this->casts,
+            'crew' => $this->crews,
+                
+            
         ];
     }
 }

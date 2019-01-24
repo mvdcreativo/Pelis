@@ -26,8 +26,7 @@ class ExternalIdController extends Controller
             $title = $movie->title;
             $id = $movie->id;
             if ($movie->tmdb_id == null) {
-                $this->serchTmdbId($title, $id); 
-                $i++;
+                $this->serchTmdbId($title, $id,$i); 
             }
 
 
@@ -38,7 +37,7 @@ class ExternalIdController extends Controller
 
 
 
-    public function serchTmdbId($title , $id){
+    public function serchTmdbId($title , $id, $i){
 
         $client = new \GuzzleHttp\Client();
         $response = $client->request('GET', 'https://api.themoviedb.org/3/search/movie', [
@@ -61,6 +60,7 @@ class ExternalIdController extends Controller
                 $idTmdb = $first_res['id'];
 
                 $this->dataTmbd($idTmdb, $id);
+                return $i++;
 
             }elseif ($cant == 0) {
                 $movie = Movie::find($id);
@@ -117,7 +117,7 @@ class ExternalIdController extends Controller
             ////////////////////////////////////////////////////////////
 
             $movie = Movie::find($id);
-            $movie->title =  $results['title'];
+            // $movie->title =  $results['title'];
             $movie->tmdb_id =  $results['id'];
             $movie->slug = Str::slug($results['title']);
             $movie->backdrop_path =   $results['backdrop_path'];

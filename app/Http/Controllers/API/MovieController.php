@@ -26,7 +26,7 @@ class MovieController extends Controller
             $data = Movie::Where('state',5)->orWhere('state', 2)->get();
             return $data = compact('data');
         }else{
-            return MovieResourceSimple::collection(Movie::all()->where('state', 2,1));
+            return MovieResourceSimple::collection(Movie::where('state', 2,1)->paginate(50));
             //return MovieResourceSimple::collection(Movie::where('state', 2)->orderBy('release_date', 'desc')->paginate(50) );
 
         }
