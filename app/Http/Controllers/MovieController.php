@@ -11,6 +11,8 @@ use App\Http\Resources\MovieResourceSimple;
 
 class MovieController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +26,7 @@ class MovieController extends Controller
             $data = Movie::Where('state',5)->orWhere('state', 2)->get();
             return $data = compact('data');
         }else{
-            $movies =  MovieResourceSimple::collection(Movie::where('state','=', 1)->orWhere('state','=', 2)->orderBy('release_date', 'desc')->paginate(50));
+            $movies =  MovieResourceSimple::collection(Movie::orWhere('state','=', 2)->orderBy('release_date', 'desc')->paginate(50));
             return view('movies.peliculas', compact('movies'));
             //return MovieResourceSimple::collection(Movie::where('state', 2)->orderBy('release_date', 'desc')->paginate(50) );
 

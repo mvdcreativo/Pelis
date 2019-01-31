@@ -16,7 +16,14 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {   
         $genres = Genre::all();
-        View::share('genres', $genres);
+        View::share([
+            'genres'=> $genres,
+            'meta_title' => 'Películas online',
+            'meta_description' => '',
+            'meta_claves' => '',
+            ]);
+
+
     }
 
     /**

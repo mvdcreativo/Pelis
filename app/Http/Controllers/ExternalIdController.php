@@ -15,23 +15,40 @@ use Illuminate\Support\Str as Str;
 
 class ExternalIdController extends Controller
 {
-    //
-    public function cotejarIds(){
-        $movies =  Movie::all();
+    	// Auth
+        public function __construct()
+        {
+            $this->middleware('auth');
+        }
+        ////       
 
+
+
+
+    public function cotejarIds(){
+        $movies =  Movie::where('state','!=', 5)->get();
+        // dd(count($movies));
         $cantidad = count($movies);
         $i=0;
+        $e=0;
         foreach ($movies as $movie) {
-            # code...
+
             $title = $movie->title;
             $id = $movie->id;
-            if ($movie->tmdb_id == null) {
-                $this->serchTmdbId($title, $id,$i); 
+
+            $check = $this->serchTmdbId($title, $id, $i); 
+            if ($check === true) {
+                $i++;
+            }else{
+                $e++;
             }
+            
+            
 
 
         }
-        echo 'Se actualizaron '.$i.' peliculas';
+        echo 'Se actualizaron '.$i.' peliculas <br>';
+        echo 'No se actualizaron '.$e.' peliculas';
 
     }
 
@@ -60,19 +77,19 @@ class ExternalIdController extends Controller
                 $idTmdb = $first_res['id'];
 
                 $this->dataTmbd($idTmdb, $id);
-                return $i++;
+                return true;
 
-            }elseif ($cant == 0) {
+            }elseif ($cant == 0 ) {
                 $movie = Movie::find($id);
                 $movie->state =  5;
                 $movie->save();
-                echo "no existe con este título <br>";
+                return false;
 
             }elseif ($cant >= 2){
                 $movie = Movie::find($id);
                 $movie->state =  5;
                 $movie->save();
-                echo "tiene más de una coincidencia <br>";
+                return false;
             }
 
             // echo json_encode($results);

@@ -123,20 +123,8 @@
 
 /* 
  /* */ 
-.search{
-    grid-area: search;
-    background-color: #272727;
-    width: 100%;
-    margin-top: 4rem;
-    display: grid;
-    justify-items : center;
-    padding-bottom: 0.5rem;
-    max-height: 2.5rem;
-}
-.input-txt input{
-    display: block;
-    width: 50%;
-}
+
+
 
 
 /*  */

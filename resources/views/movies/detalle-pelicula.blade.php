@@ -71,8 +71,8 @@
                   Genero:
                 </span>
                 <span>
-                    @foreach ($movie->genres as $genre)                        
-                        <span class="badge badge-pill badge-light">{{ $genre->name }}</span>
+                    @foreach ($movie->genres as $genre)
+                        <a class="badge badge-pill badge-light" href="/peliculas-de/{{ $genre->slug }}">{{ $genre->name }}</a>                        
                     @endforeach      
                 </span>
               </div>

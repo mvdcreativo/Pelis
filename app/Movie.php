@@ -54,4 +54,11 @@ class Movie extends Model
     {
         return $this->hasMany(Cast::class);
     }
+
+    public function scopeSearch($query, $search)
+    {
+        if ($search) {
+           return $query->where('title', 'LIKE', "%$search%");
+        }
+    }
 }

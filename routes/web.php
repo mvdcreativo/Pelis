@@ -33,4 +33,4 @@ Route::resource('/', 'MovieController');
 Route::resource('peliculas', 'MovieController');
 
 Route::resource('peliculas-de', 'GenreController');
-
+Route::get('/buscar', 'SearchController@search')->name('buscar');

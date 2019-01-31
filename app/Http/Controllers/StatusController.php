@@ -12,7 +12,15 @@ use App\Http\Resources\Movie as MovieResource;
 
 class StatusController extends Controller
 {
-    //
+    	// Auth
+        public function __construct()
+        {
+            $this->middleware('auth');
+        }
+        ////       
+
+
+
     public function getStatus()
     {
         // $status = Movie::where('id_upload', '130499700')->get();
@@ -57,7 +65,7 @@ class StatusController extends Controller
 
         foreach ($movies as $movie) 
         {
-            if($id_uplodBd = $movie->id_upload)
+            if($movie->id_upload)
             {
                 $id_uplodBd= $movie->id_upload;
                 
@@ -71,10 +79,11 @@ class StatusController extends Controller
                     {
                         $urlDwl = $id_uploadServ['url'];
                         $extid = $id_uploadServ['extid'];
+                        
                         $movieUpdate = Movie::find($idBd);
                         $movieUpdate->url_dwl = $urlDwl;
                         $movieUpdate->extid = $extid;
-                        $movieUpdate->state = 1;
+                        // $movieUpdate->state = 1;
                         $movieUpdate->save();
 
             
@@ -90,42 +99,42 @@ class StatusController extends Controller
     }
 
 
-    public function deleteErrors($extid)
-    {
+    // public function deleteErrors($extid)
+    // {
 
-        $client = new \GuzzleHttp\Client();
-        $response = $client->request('GET', 'https://api.openload.co/1/file/delete', [
-            'query' => [
-                // 'login' => '4c27f06e8bc67437',
-                // 'key' => 'wIZfdNAC',
-                'file' => $extid,
+    //     $client = new \GuzzleHttp\Client();
+    //     $response = $client->request('GET', 'https://api.openload.co/1/file/delete', [
+    //         'query' => [
+    //             // 'login' => '4c27f06e8bc67437',
+    //             // 'key' => 'wIZfdNAC',
+    //             'file' => $extid,
                 
-                'login' => '3c1cef2383ac50d1',
-                'key' => 'mgatOun9',
-                // 'url' => $urlOrigen,
-                // 'folder' => 6162544
-            ]
-        ]);
+    //             'login' => '3c1cef2383ac50d1',
+    //             'key' => 'mgatOun9',
+    //             // 'url' => $urlOrigen,
+    //             // 'folder' => 6162544
+    //         ]
+    //     ]);
 
-        if($response->getStatusCode() == 200){
-            $result = json_decode($response->getBody()->getContents(), true);
+    //     if($response->getStatusCode() == 200){
+    //         $result = json_decode($response->getBody()->getContents(), true);
 
-            $resp = [];
-            $resp = $result['result'];
-            echo 'Delete -'.$extid.'<br>';
+    //         $resp = [];
+    //         $resp = $result['result'];
+    //         echo 'Delete -'.$extid.'<br>';
 
-        };
+    //     };
 
 
-        ///eliminamos de la BD
-        $movie = Movie::where('extid', $extid)
-                        ->orWhere('state', 0)
-                        ->delete();
-        if($movie)
-        {
-            echo 'Delete -'.$extid.'de la BD <br>';
-        }
-        //////
-    }
+    //     ///eliminamos de la BD
+    //     $movie = Movie::where('extid', $extid)
+    //                     ->orWhere('state', 0)
+    //                     ->delete();
+    //     if($movie)
+    //     {
+    //         echo 'Delete -'.$extid.'de la BD <br>';
+    //     }
+    //     //////
+    // }
 
 }

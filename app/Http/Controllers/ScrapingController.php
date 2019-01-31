@@ -16,7 +16,13 @@ use App\Genre;
 //ALL PELIS
 class ScrapingController extends Controller
 {
-
+	// Auth
+    public function __construct()
+    {
+        $this->middleware('auth');
+	}
+	
+	
 //METODO PARA SUBIR A OPENLOAD
 	public function upload($urlOrigen, $titulo)
 	{
@@ -86,7 +92,7 @@ class ScrapingController extends Controller
 
 
 			
-			$i=1;
+			
 
 			foreach ($peliculas as $pelicula) {
 				$crawler  = $cliente->request('GET', $pelicula);
@@ -131,70 +137,9 @@ class ScrapingController extends Controller
 						if(isset($upload_id['result']->id)){
 							echo $upload_id['result']->id.'<br>';
 							$upload_id = $upload_id['result']->id;
-							////DESCRIPCION / SINOPSIS
-							// $if_p = $crawler->filter('.mvic-desc > .desc ')->first()->html();
-							// $pos = strpos($if_p, "<p>");
-							// if($pos !== false){
-							// 	$descripcion = $crawler->filter('.mvic-desc > .desc > p')->first()->text();	
-							// }else{
-							// 	$descripcion = "Sin Descripción";
-							// };
-							
-			
-							////AÑO
-							// $ano = $crawler->filter('.mvic-info > .mvici-right > p')->eq(2)->each(function($node){
-							// 	return $node->filter('a')->first()->text();
-							// });
-							// if($ano != null){
-							// 	$ano = implode($ano);
-							// }else{
-							// 	$ano = 0;
-							// }
-							
-			
-							////DURACION
-							// $duracion = $crawler->filter('.mvic-info > .mvici-right > p')->eq(0)->each(function($node){
-							// 	return $node->filter( 'span')->first()->text();
-							// });
-							// $duracion = implode($duracion);
-			
-							/////REPARTO
-							// $reparto = $crawler->filter('.mvic-info > .mvici-left > p')->eq(3)->each(function($node){
-							// 				return $node->filter('span > a')->each(function($node_a){
-			
-							// 					$actor = Actor::firstOrCreate(['name' => $node_a->text()]);
-							// 					return $actor->id;
-							// 				});
-							// 			});
-							/////////////
-							/////Genre
-							// $generos = $crawler->filter('.mvic-info > .mvici-left > p')->eq(1)->each(function($node){
-							// 				return $node->filter('a')->each(function($node_a){
-							// 					$genre = Genre::firstOrCreate(['name' => $node_a->text()]);
-							// 					return $genre->id;
-							// 				});
-							// 			});
-							////////////
+
 							$imagen = $crawler->filter('.mvic-thumb > img')->first()->attr('src');
 			
-							///////DIRECTOR
-							// $director = $crawler->filter('.mvic-info > .mvici-left > p')->eq(2)->each(function($node){
-							// 				return $node->filter('span > a')->first()->each(function($node_a){
-							// 					$dire = Director::firstOrCreate(['name' =>  $node_a->text()]);
-							// 					return $dire->id;
-							// 				});
-							// 			});
-							// if($director != null)
-							// {
-							// 	$director_id = implode($director[0]);
-							// }else{
-							// 	$director_id = 0;
-							// }
-							//////////////	
-
-							// ////////RATING
-							// $rating = $crawler->filter('.imdb_r > p > span')->first()->text();
-							// //////////////
 
 							
 							//Armamos el array de datos
@@ -212,14 +157,9 @@ class ScrapingController extends Controller
 								'id_upload' => $upload_id,
 								
 							];
-							// 	echo '<pre>';
-							// var_dump($datos);
 							//////GUARDAMOS EN LA BD
 							$movies = Movie::firstOrCreate(['title' => $datos['title']], $datos );
-							// $movies->genres()->sync($generos[0]);
-							// if(isset($reparto[0])){
-							// 	$movies->actors()->sync($reparto[0]);
-							// }
+
 						}else{
 							
 							if($upload_id['code'] == 403){
@@ -255,7 +195,7 @@ class ScrapingController extends Controller
 				});
 
 		//$n_paginas = basename(implode($paginas));
-		$n_paginas =10;
+		$n_paginas =2;
 
 		for ($i=0; $i <= $n_paginas; $i++) {
 			if($i==0){

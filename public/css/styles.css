@@ -8,7 +8,45 @@
   color: white;
   padding: 1rem;
 }
+#app nav .container{
+  display: grid;
+  grid-template-columns: 0.5fr 3fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+#app nav .container .search{
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 2;
+}
+.input-txt input{
+  background-color: #5c5c5c;
+  outline: none;
+  border: none;
+  padding: 0.5em 2em 0.5em 2em;
+  border-radius: 1.5em;
+  color: white;
+}
 
+
+.input-txt form , .input-txt input {
+  width: 100%;
+}
+
+h1 ,h2{
+  font-family: 'Nunito';
+  font-size: 2em;
+  padding: 1rem 1rem 0rem 1rem;
+}
+h2{
+  font-size: 1em;
+  padding: 0rem 1rem 1rem 1rem;
+  margin-left: 1rem;
+  /* font-weight: bold; */
+
+}
 a:hover{
   text-decoration: none;
 
@@ -48,12 +86,16 @@ a:hover{
     src: url('../fonts/Roboto-Bold.ttf'); 
   }
 
+  @media(max-width: 768px){
+    .navbar-toggler{
+      grid-column-start: 3;
+    }
+    button span{
+      color: white!important;
+    }
+    .dropleft .desplegable-genres{
+      grid-template-columns: repeat(2,1fr);
 
-  
-  .input-txt input{
-    background-color: #f3f3f3;
-    outline: none;
-    border: none;
-    padding: 0.6em 1em;
-    border-radius: 1.5em;
+    }
   }
+
